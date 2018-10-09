@@ -1,0 +1,135 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+
+\title{Statistik 2018}
+\author{Benjamin Altmiks}
+\date{2. Oktober 2018 - \today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Einführung}
+\begin{quote}
+    „ There are three kinds of lies: lies, damned lies and statistics.“ \newline Leonard Henry Courteney
+\end{quote}
+\subsection{Allgemein}
+Die Statistik ist aufgeteilt in die Zusammenstellung von Zahlen und die statistische Methodenlehre. Die statistische Methodenlehre beeinhaltet die Desprektive (Durchschnittliche Berechnung) und Induktive (Schätzung und Testen) Statistik sowie die Wahrscheinlichkeitstheorie.
+
+\subsection{Merkmale}
+Merkmale können als \textbf{qualitativ – quantitativ} und \newline \textbf{diskret (Abzählbar) – stetig (Nicht Abzählbar)} definiert werden. \newline
+Die Grundgesamtheit ist die Menge aller relevanten Merkmalsträger
+
+\subsection{Skalenniveaus}
+Man unterscheidet Skalenniveaus zwischen: \newline\newline
+\textsc{Nominalskala}: Daten die in keine logische Reihenfolge gebracht werden können wie Farben oder das Geschlecht
+\newline\newline\textsc{Odinalskala}: Können in logische Reihenfolge gebracht werden, aber nicht quantifiziert werden, das heißt man kann nicht mit ihnen rechnen. Ein Beispiel hierfür sind Schulnoten
+\newline\newline\textsc{Kardinalskala}: Sind Daten die in logische Reihenfolge gebarcht werden können, sowie eine Differenzbildung sinnvoll und möglich.
+
+\subsection{Skalendegression und Skalenprogression}
+ Hier fehlt noch was
+
+\newpage
+\section{RStudio - Grundlagen }
+\subsection{Allgemeine Befehle}
+Die wichtigsten Befehle in R und R-Studio sind:
+\begin{table}[!htp]
+    \centering
+    \begin{tabular}{|c|l|}\hline
+Eingabe&Funktion\\\hline
+?Befehl&Erklärung/Definition\\\hline
+x = y bzw x <- y&Zuweisungsoperator\\\hline
+ls()&Objektauflistung\\\hline
+rm(x)&Objektlöschung(x)\\\hline
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+\subsection{Mathematik}
+\subsubsection{Taschenrechner}
+Man kann R it R-Studio ganz einfach als Taschenrechner mit den richtigen Befehlen verwenden. Diese sind zum Beispiel: \newline
+\begin{itemize}
+    \item Addition, Subtraktion, Multiplikation und Division mit Zeichen (+,-,*,/)
+    \item Exponentialoperationen $x^y$ , Logarithmus log(x) oder Wurzel sqrt(x) 
+    
+\end{itemize}
+\subsubsection{Vektoren}
+Vektoren sind eine Urliste von Daten eines Merkmals. Es kann sich dabei um ein nominales (String) oder ein Metrisches (int) Merkmal handeln, wobei das Nominale Merkmal immer das stärkere ist.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+c(x,y,z) & Erstellen eines neuen Vektors\\\hline
+x:y & Aufernanderfolgende Ganze Zahlen von x bis y\\\hline
+seq(from = x, to = y, by = z) & Folgen variabler Folgen mit bestimmtem Abstand\\\hline
+rep(c(x,y),z) & Wiederholen einer Folge x,y in neuem Vektor z mal\\\hline
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+Auch auf Vektoren können Rechneroperationen ausgeführt werden. Sollte ein Vektor kleiner als der andere sein, so wird dieser solange von vorne wiederholt, bis die Länge der beiden Vektoren gleich ist. Das selbe gilt für Vergleichsoperatoren:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}\hline
+sum(x) & Berechnet die Summe aller Elemente aus dem Vektor\\\hline
+length(x) & Berechnet die Anzahl der Elemente im Vektor\\\hline
+ < , > , = & Vergleichoperatoren\\\hline
+ \& , | & Verknüpfung zwischen Vergleichen\\\hline 
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+\subsubsection{Fuktionen}
+In R können Funktionen einer reellen Variable definiert werden. Die Funktionen können mit Konstanten sowie Variablen Skalen bzw. Vektoren aufgerufen werden:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}\hline
+f = function(x) {x+1} &  Erstellt eine Funktion x+1 \\\hline
+f(y) & Aufrufen der Funktion mit Wert y\\\hline
+data.frame(x,f(x)) & X als Vektor ergibt Wertetabelle\\\hline
+print(data.frame(x,f(x)),row.names = FALSE) & Zeilennummer unterdrücken\\\hline
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+\subsubsection{Graphen von Funktionen}
+In R-Studio ist es außerdem möglich die bereits genannten Funktionen mithilfe von curve(f) zeichnen zu lassen. curve() hat einige nützliche Parameter:
+\begin{itemize}
+    \item from, to für den Definitionsbereich,
+    \item add für die Überlagerung mehrerer Kurven,
+    \item col für die Farbe der Kurve
+    \item xlab, ylab, main für die Beschriftung der Abszisse, Ordinate, der Überschrift
+    \item lwd für die Strichdicke der Kurve
+\end{itemize}
+Mit grid() kann man ein Gitter in den Graphen einzeichnen.
+
+\subsection{Datenverarbeitung}
+\subsubsection{Data Frames}
+
+\newpage\section{Deskriptive Statistik}
+\subsection{Notationen}
+Es gelten im allgemeinen folgende Notationen:
+\begin{itemize}
+    \item X: Merkmalsvariable
+    \item x: Realisation einer Merkmalsvariable
+    \item i: Index, indiziert die Merkmalsträger (i = 1,....,n)
+    \item n: Anzahl der Merkmalsträger
+    \item \(a_j\): Merkmalsausprägung, also alle Merkmale ohne Duplikate
+    \item h(\(a_j\)): Absolute Häufigkeit des Auftretens (H(\(a_j\)) für kumulativ = anhäufend)
+    \item f(\(a_j\)): Relative Häufigkeit = Absolute Häufigkeit/n (F(\(a_j\)) für kumulativ)
+\end{itemize}
+Des weiteren gibt es die Urliste. Sie stellt das direkte Ergebnis einer Datenerhebung (Vektor der Merkmalsausprägungen) dar,Sie kann unsortiert oder sortiert vorliegen.
+
+\subsection{Empirische Verteilungsfunktion TODO}
+Beschränkt auf metrische Merkmale die jeder reellen Zahl x den Anteil der Stichprobenwerte, die kleiner oder gleich x sind, zuordnet.
+Defenition und R
+\subsection{Empirische Quantile TODO}
+Ebenso auf metrische Merkmale beschränkt und benötigt eine sortierte Urliste zur Berechnung. Sie ist die Umkehrfunktion der Verteilungsfunktion.
+Defenition und R
+
+\subsection{Graphische Darstellung}
+
+\end{document}
