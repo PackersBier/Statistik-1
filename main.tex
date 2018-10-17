@@ -3,11 +3,10 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{float}
-
+\usepackage{graphicx}
 \title{Statistik 2018}
 \author{Benjamin Altmiks}
 \date{2. Oktober 2018 - \today}
-
 \begin{document}
 \maketitle
 \tableofcontents
@@ -18,26 +17,23 @@
 \end{quote}
 \subsection{Allgemein}
 Die Statistik ist aufgeteilt in die Zusammenstellung von Zahlen und die statistische Methodenlehre. Die statistische Methodenlehre beeinhaltet die Desprektive (Durchschnittliche Berechnung) und Induktive (Schätzung und Testen) Statistik sowie die Wahrscheinlichkeitstheorie.
-
 \subsection{Merkmale}
 Merkmale können als \textbf{qualitativ – quantitativ} und \newline \textbf{diskret (Abzählbar) – stetig (Nicht Abzählbar)} definiert werden. \newline
 Die Grundgesamtheit ist die Menge aller relevanten Merkmalsträger
-
 \subsection{Skalenniveaus}
 Man unterscheidet Skalenniveaus zwischen: \newline\newline
 \textsc{Nominalskala}: Daten die in keine logische Reihenfolge gebracht werden können wie Farben oder das Geschlecht
 \newline\newline\textsc{Odinalskala}: Können in logische Reihenfolge gebracht werden, aber nicht quantifiziert werden, das heißt man kann nicht mit ihnen rechnen. Ein Beispiel hierfür sind Schulnoten
 \newline\newline\textsc{Kardinalskala}: Sind Daten die in logische Reihenfolge gebarcht werden können, sowie eine Differenzbildung sinnvoll und möglich.
-
 \subsection{Skalendegression und Skalenprogression}
- Hier fehlt noch was
-
+Ist eine Skalierung um Informationen angemessen und möglichst genau darzustellen.\newline
+\textbf{Skalendegression}: Durch Informationsverlust können alle Merkmale nominal Skaliert werden, metrische Merkmale auch ordinal skaliert. Nur metrische Merkmale dürfen metrisch skalliert werden.\newline
+\textbf{Skalenprogression}: Interpretation von mehr Informationen aus Merkmalen, als inhaltlich vertretbar. (Fehlinterpretation möglich) 
 \newpage
-\section{RStudio - Grundlagen }
+\section{R-Studio - Grundlagen }
 \subsection{Allgemeine Befehle}
 Die wichtigsten Befehle in R und R-Studio sind:
-\begin{table}[!htp]
-    \centering
+\begin{table}[H]
     \begin{tabular}{|c|l|}\hline
 Eingabe&Funktion\\\hline
 ?Befehl&Erklärung/Definition\\\hline
@@ -57,10 +53,7 @@ Man kann R it R-Studio ganz einfach als Taschenrechner mit den richtigen Befehle
 \end{itemize}
 \subsubsection{Vektoren}
 Vektoren sind eine Urliste von Daten eines Merkmals. Es kann sich dabei um ein nominales (String) oder ein Metrisches (int) Merkmal handeln, wobei das Nominale Merkmal immer das stärkere ist.
-
-
 \begin{table}[H]
-    \centering
     \begin{tabular}{|l|l|}
     \hline
 c(x,y,z) & Erstellen eines neuen Vektors\\\hline
@@ -70,19 +63,17 @@ rep(c(x,y),z) & Wiederholen einer Folge x,y in neuem Vektor z mal\\\hline
     \end{tabular}
     \label{tab:my_label}
 \end{table}
-
+\newpage
 Auch auf Vektoren können Rechneroperationen ausgeführt werden. Sollte ein Vektor kleiner als der andere sein, so wird dieser solange von vorne wiederholt, bis die Länge der beiden Vektoren gleich ist. Das selbe gilt für Vergleichsoperatoren:
 \begin{table}[h]
-    \centering
     \begin{tabular}{|l|l|}\hline
 sum(x) & Berechnet die Summe aller Elemente aus dem Vektor\\\hline
 length(x) & Berechnet die Anzahl der Elemente im Vektor\\\hline
  < , > , = & Vergleichoperatoren\\\hline
  \& , | & Verknüpfung zwischen Vergleichen\\\hline 
-    \end{tabular}
-    \label{tab:my_label}
+\end{tabular}
+\label{tab:my_label}
 \end{table}
-
 \subsubsection{Fuktionen}
 In R können Funktionen einer reellen Variable definiert werden. Die Funktionen können mit Konstanten sowie Variablen Skalen bzw. Vektoren aufgerufen werden:
 \begin{table}[h]
@@ -105,11 +96,40 @@ In R-Studio ist es außerdem möglich die bereits genannten Funktionen mithilfe 
     \item lwd für die Strichdicke der Kurve
 \end{itemize}
 Mit grid() kann man ein Gitter in den Graphen einzeichnen.
-
+\subsubsection{Merkmale}
+\begin{table}[h]
+    \begin{tabular}{|l|l|}\hline
+str()&Allgemeine Merkmalabfrage/Skalenniveau /\\\hline
+is.numeric()&Metrische Merkmalabfrage\\\hline
+is.ordered&Ordinale Merkmalabfrage\\\hline
+is.factor&Nominae Merkmalabfrage\\\hline
+as.numeric()&Umwandlung von Zeichenkette zu numerisch\\\hline
+as.factor&Umwandlung in nominale Merkmale\\\hline
+\end{tabular}
+    \label{tab:my_label}
+\end{table}
 \subsection{Datenverarbeitung}
 \subsubsection{Data Frames}
+Urlisten mit mehreren Merkmalen können über eine Tabelle abgebildet werden\newline
+\begin{itemize}
+\item\textbf{data.frame(Vektor, Vektor,...)}: Zeilen = Objekte, Spalten = Merkmalen
+\item Einzelne Objekte können durch Index \textbf{dataFrame[x,y]} ausgegeben werden (Matrix)
+\item Einzelne Spalten können durch Namen direkt angesprochen werden:\newline \textbf{dataFarame\$Namen}
+\item Bedingungen für Spaltenabfrage durch \textbf{dataFrame[bedingung]} mit ursprünglichem Namen!
+\item \textbf{nrow()} und \textbf{ncol()} gibt die Anzahl der Reihen/Zeilen aus
+\item \textbf{rbind()} und \textbf{cbind()} kann die Tabelle um Objekte/Merkmale erweitern 
+\end{itemize}
 
-\newpage\section{Deskriptive Statistik}
+\subsubsection{Daten einlesen}
+Zum einlesen von Daten kann in der Benutzeroberfläche von R-Studio mit $"$Import Dataset$"$ eine URL oder eine lokale Datei verwendet werden. Alternativ kann der Befehl $"$read.csv()$"$ verwendet werden.
+Zur Verwendung dieser Datensätze kann ein Überblick geschaffen werden mit:
+\begin{itemize}
+    \item str(): Darstellung der Struktur
+    \item head(): Ersten Objekte werden angezeigt
+    \item summary(): Verteilung der Ausprägungen
+\end{itemize}
+\newpage
+\section{Deskriptive Statistik}
 \subsection{Notationen}
 Es gelten im allgemeinen folgende Notationen:
 \begin{itemize}
@@ -121,15 +141,95 @@ Es gelten im allgemeinen folgende Notationen:
     \item h(\(a_j\)): Absolute Häufigkeit des Auftretens (H(\(a_j\)) für kumulativ = anhäufend)
     \item f(\(a_j\)): Relative Häufigkeit = Absolute Häufigkeit/n (F(\(a_j\)) für kumulativ)
 \end{itemize}
-Des weiteren gibt es die Urliste. Sie stellt das direkte Ergebnis einer Datenerhebung (Vektor der Merkmalsausprägungen) dar,Sie kann unsortiert oder sortiert vorliegen.
+Des weiteren gibt es die Urliste. Sie stellt das direkte Ergebnis einer Datenerhebung (Vektor der Merkmalsausprägungen) dar. Sie kann unsortiert oder sortiert vorliegen.
+\subsection{Empirische Verteilungsfunktion}
+Sei X eine Zufallsgröße mit der Verteilungsfunktion F und sei (x1, x2, …, xn) eine konkrete Stichprobe von X vom Umfang n. Unter der empirischen Verteilungsfunktion dieser Stichprobe versteht man die Funktion
+\begin{eqnarray}{F}_{n}(x)=\frac{{H}_{n}(x)}{n},\,\,x\in {\mathbb{R}},\end{eqnarray}
+In R-Studio berechenbar durch ecdf(x)
+\subsection{(Empirische) Quantile}
+Unter dem (unteren) empirischen p-Quantil Qp, (0 < p < 1) versteht man die Größe, die die geordnete Stichprobe so zerlegt, daß p * 100\% der n Daten kleiner als Qp sind. Sie ist exakt wie folgt definiert:
+\begin{eqnarray}K(x):=\left\{\begin{array}{ll}\displaystyle \sum _{i=-\infty }^{\infty }{(-1)}^{i}{e}^{-2{i}^{2}{x}^{2}} & {\text{f}\rm{\ddot{u}}\text{r}}\,x\gt 0\\ 0 & {\text{f}\rm{\ddot{u}}\text{r}}\,x\le 0\end{array}\right.\end{eqnarray}
+In R-Studio berechenbar durch quantile(x)
+\subsection{Median}
+Ist X eine auf dem Wahrscheinlichkeitsraum $({\rm{\Omega }},{\mathfrak{A}},P)$ definierte reelle Zufallsvariable, so wird jede Zahl m mit der Eigenschaft 
+\begin{eqnarray}P(X\le m)\ge \frac{1}{2}\quad \text{und}\quad P(X\ge m)\ge \frac{1}{2}\end{eqnarray}
+als Median der Verteilung von X bzw. als Median von X bezeichnet. Es ist der Mittlere Wert in einer sortierten Liste und wird in R durch median(x) berechnet.
+\subsection{Arithmetisches Mittel/Durchschnitt}
+Arithmetisches Mittel aus n Beobachtungen (x1, x2, …, xn) einer Zufallsgröße X, also \begin{eqnarray}\overline{x}:=\frac{1}{n}\displaystyle \sum _{i=1}^{n}{x}_{i}.\end{eqnarray}
+In R-Studio berechenbar durch mean(x)
+\subsection{Weitere R-Kommandos}
+\begin{itemize}
+    \item cumsum() $\Rightarrow$ Kumulierte Summen:\newline 
+    Anzahl der Merkmalsträger die kleiner sind als eine bestimmte Schranke
+    \item 
+    \end{itemize}
+\newpage
+\section{Graphische Darstellungen TODO}
+\begin{enumerate}
+    \item Durch R bestimmtes passendes Programm: plot(Data\$SubData)
+    \item Balkendiagramm:barplot(Daten)
+    \item Säulendiagramm:barplot(Daten, horiz = T)
+    \item Kreisdiagramm:pie(Daten)
+    \item Farben: plot(Daten ,col = c("blue"...))
+    \item Gegenüberstellung:
+    \begin{itemize}
+        \item Zwei metrische Merkmale (Streuplot), 
+        \item Zwei nominale Merkmale (Spinplot), 
+        \item Einem metrisches und einem nominales Merkmal (Boxplot)
+        \item Mehrere metrische Merkmale (Streuplotmatrix)
+    \end{itemize}
+\end{enumerate}
+barplot(häufigkeitstabelle) = Balkendiagramm bzw Säulendiagramm --> horiz kann drehen
+pie(häufigkeitstabelle) = kreisdiagramm
 
-\subsection{Empirische Verteilungsfunktion TODO}
-Beschränkt auf metrische Merkmale die jeder reellen Zahl x den Anteil der Stichprobenwerte, die kleiner oder gleich x sind, zuordnet.
-Defenition und R
-\subsection{Empirische Quantile TODO}
-Ebenso auf metrische Merkmale beschränkt und benötigt eine sortierte Urliste zur Berechnung. Sie ist die Umkehrfunktion der Verteilungsfunktion.
-Defenition und R
+\subsection{Streuungsparameter}
 
-\subsection{Graphische Darstellung}
+\begin{itemize}
+    \item Spannweite:\begin{eqnarray}R={x}_{max}-{x}_{min},\end{eqnarray}
+    \item Mittlere Quadratische Abweichung (Qualitätskriterium für Schätzer)
+    \begin{eqnarray}{s}^{2}=\frac{1}{n}\displaystyle \sum_{i=1}^{n}{({x}_{i}-\overline{x})}^{2}\end{eqnarray}
+    \item Empirische Standardabweichung 
+    \begin{eqnarray}
+    S = \sqrt{{s}^{2}}
+    \end{eqnarray}
+    \item Variationskoeffizient 
+    \begin{eqnarray}\upsilon =\frac{s}{x}.\end{eqnarray}
+\end{itemize}
+\newpage
+\subsection{Boxplot}
+Graphisch kann dies mithilfe eines Boxplots gezeigt werden. Ein Box-Whisker-Plot ist eine Zusammenfassung eines Datensatzes in fünf Punkten. Diese fünf Punkte sind das Minimum, das untere Quartil, der Median, das obere Quartil und das Maximum.
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.9\textwidth]{Boxplot.png}
+  \label{fig:Bild1}
+\end{figure}
 
+\section{Konzentrationsmaße}
+Konzentrationsmaße messen, wie ungleich bzw. wie geballt konzentriert Messwerte der Merkmalsträger verteilt sind. Mithilfe einer Lorenzkurve kann dies dargestellt werden. Für dich Achsen gilt:\newline
+v\index{k} = Anteil der k kleinsten MM-Träger an der MM-Summe\newline
+u\index{k} = Anteil der k kleinsten an der Gesamtzahl der MM-Träger
+\section{Taschenrechner}
+\begin{enumerate}
+    \item Häufigkeiten einschalten:
+    $\Rightarrow$ SHIFT + SETUP + DOWN + 3 (Statistik)
+    \item Statistik-Modus
+    $\Rightarrow$ MENU + 6 + 1 (Variable)
+    \item Daten und Häufigkeiten eingeben
+    $\Rightarrow$ Abschluss der Dateneingabe durch AC
+    \item Ergebnisse/Maßzahlen
+    \item OPTN + 2 (1-Variab-Bereich)
+\end{enumerate}
+Dabei kann folgendes abgelesen werden:
+\begin{table}[h]
+    \begin{tabular}{|c|c|}
+$\overline{x}$&Arithmetisches Mittel 
+\begin{eqnarray}\sigma x
+\end{eqnarray}&was weiß ich todo
+    \end{tabular}
+\end{table}
+\begin{itemize}
+    \item $\overline{x}$: Arithmetisches Mittel \newline
+    \item \begin{eqnarray} \sigma x\end{eqnarray}
+\end{itemize}
 \end{document}
+
