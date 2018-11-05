@@ -4,6 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{upgreek}
 \title{Statistik 2018}
 \author{Benjamin Altmiks}
 \date{2. Oktober 2018 - \today}
@@ -30,7 +32,7 @@ Ist eine Skalierung um Informationen angemessen und möglichst genau darzustelle
 \textbf{Skalendegression}: Durch Informationsverlust können alle Merkmale nominal Skaliert werden, metrische Merkmale auch ordinal skaliert. Nur metrische Merkmale dürfen metrisch skalliert werden.\newline
 \textbf{Skalenprogression}: Interpretation von mehr Informationen aus Merkmalen, als inhaltlich vertretbar. (Fehlinterpretation möglich) 
 \newpage
-\section{R-Studio - Grundlagen }
+\section{R-Studio-Grundlagen}
 \subsection{Allgemeine Befehle}
 Die wichtigsten Befehle in R und R-Studio sind:
 \begin{table}[H]
@@ -144,18 +146,27 @@ Es gelten im allgemeinen folgende Notationen:
 Des weiteren gibt es die Urliste. Sie stellt das direkte Ergebnis einer Datenerhebung (Vektor der Merkmalsausprägungen) dar. Sie kann unsortiert oder sortiert vorliegen.
 \subsection{Empirische Verteilungsfunktion}
 Sei X eine Zufallsgröße mit der Verteilungsfunktion F und sei (x1, x2, …, xn) eine konkrete Stichprobe von X vom Umfang n. Unter der empirischen Verteilungsfunktion dieser Stichprobe versteht man die Funktion
-\begin{eqnarray}{F}_{n}(x)=\frac{{H}_{n}(x)}{n},\,\,x\in {\mathbb{R}},\end{eqnarray}
+\begin{eqnarray*}{F}_{n}(x)=\frac{{H}_{n}(x)}{n},\,\,x\in {\mathbb{R}},\end{eqnarray*}
 In R-Studio berechenbar durch ecdf(x)
 \subsection{(Empirische) Quantile}
 Unter dem (unteren) empirischen p-Quantil Qp, (0 < p < 1) versteht man die Größe, die die geordnete Stichprobe so zerlegt, daß p * 100\% der n Daten kleiner als Qp sind. Sie ist exakt wie folgt definiert:
-\begin{eqnarray}K(x):=\left\{\begin{array}{ll}\displaystyle \sum _{i=-\infty }^{\infty }{(-1)}^{i}{e}^{-2{i}^{2}{x}^{2}} & {\text{f}\rm{\ddot{u}}\text{r}}\,x\gt 0\\ 0 & {\text{f}\rm{\ddot{u}}\text{r}}\,x\le 0\end{array}\right.\end{eqnarray}
+\begin{eqnarray*}K(x):=\left\{\begin{array}{ll}\displaystyle \sum _{i=-\infty }^{\infty }{(-1)}^{i}{e}^{-2{i}^{2}{x}^{2}} & {\text{f}\rm{\ddot{u}}\text{r}}\,x\gt 0\\ 0 & {\text{f}\rm{\ddot{u}}\text{r}}\,x\le 0\end{array}\right.\end{eqnarray*}
 In R-Studio berechenbar durch quantile(x)
+Zur Berechnung der Quantile ist mit folgendem Verfahren zu arbeiten:
+\begin{enumerate}
+    \item Es wird die eine sortierte Liste der Werte benötigt (aufsteigend)
+    \item Wir berechnen n*p (n = Anzahl Werte, p = Quantil)
+    \item Formel auswählen und Werte heraussuchen:
+    \begin{align*}\tilde{x}_p=\begin{cases} \frac{1}{2}(x_{np}+x_{np+1}) & \text{ wenn }np\text{ ganzzahlig}\\ x_{\lceil np \rceil}& \text{ wenn }np\text{ nicht ganzzahlig}\end{cases}
+\end{align*}
+
+\end{enumerate}
 \subsection{Median}
 Ist X eine auf dem Wahrscheinlichkeitsraum $({\rm{\Omega }},{\mathfrak{A}},P)$ definierte reelle Zufallsvariable, so wird jede Zahl m mit der Eigenschaft 
-\begin{eqnarray}P(X\le m)\ge \frac{1}{2}\quad \text{und}\quad P(X\ge m)\ge \frac{1}{2}\end{eqnarray}
+\begin{eqnarray*}P(X\le m)\ge \frac{1}{2}\quad \text{und}\quad P(X\ge m)\ge \frac{1}{2}\end{eqnarray*}
 als Median der Verteilung von X bzw. als Median von X bezeichnet. Es ist der Mittlere Wert in einer sortierten Liste und wird in R durch median(x) berechnet.
 \subsection{Arithmetisches Mittel/Durchschnitt}
-Arithmetisches Mittel aus n Beobachtungen (x1, x2, …, xn) einer Zufallsgröße X, also \begin{eqnarray}\overline{x}:=\frac{1}{n}\displaystyle \sum _{i=1}^{n}{x}_{i}.\end{eqnarray}
+Arithmetisches Mittel aus n Beobachtungen (x1, x2, …, xn) einer Zufallsgröße X, also \begin{eqnarray*}\overline{x}:=\frac{1}{n}\displaystyle \sum _{i=1}^{n}{x}_{i}.\end{eqnarray*}
 In R-Studio berechenbar durch mean(x)
 \subsection{Weitere R-Kommandos}
 \begin{itemize}
@@ -164,9 +175,9 @@ In R-Studio berechenbar durch mean(x)
     \item 
     \end{itemize}
 \newpage
-\section{Graphische Darstellungen TODO}
+\section{Graphische Darstellungen}
 \begin{enumerate}
-    \item Durch R bestimmtes passendes Programm: plot(Data\$SubData)
+    \item Durch R bestimmtes passende Graphische Darstellung: plot(Data\$SubData)
     \item Balkendiagramm:barplot(Daten)
     \item Säulendiagramm:barplot(Daten, horiz = T)
     \item Kreisdiagramm:pie(Daten)
@@ -185,29 +196,82 @@ pie(häufigkeitstabelle) = kreisdiagramm
 \subsection{Streuungsparameter}
 
 \begin{itemize}
-    \item Spannweite:\begin{eqnarray}R={x}_{max}-{x}_{min},\end{eqnarray}
+    \item Spannweite:\begin{eqnarray*}R={x}_{max}-{x}_{min},\end{eqnarray*}
     \item Mittlere Quadratische Abweichung (Qualitätskriterium für Schätzer)
-    \begin{eqnarray}{s}^{2}=\frac{1}{n}\displaystyle \sum_{i=1}^{n}{({x}_{i}-\overline{x})}^{2}\end{eqnarray}
+    \begin{eqnarray*}{s}^{2}=\frac{1}{n}\displaystyle \sum_{i=1}^{n}{({x}_{i}-\overline{x})}^{2}\end{eqnarray*}
     \item Empirische Standardabweichung 
-    \begin{eqnarray}
+    \begin{eqnarray*}
     S = \sqrt{{s}^{2}}
-    \end{eqnarray}
+    \end{eqnarray*}
     \item Variationskoeffizient 
-    \begin{eqnarray}\upsilon =\frac{s}{x}.\end{eqnarray}
+    \begin{eqnarray*}\upsilon =\frac{s}{x}.\end{eqnarray*}
 \end{itemize}
 \newpage
 \subsection{Boxplot}
-Graphisch kann dies mithilfe eines Boxplots gezeigt werden. Ein Box-Whisker-Plot ist eine Zusammenfassung eines Datensatzes in fünf Punkten. Diese fünf Punkte sind das Minimum, das untere Quartil, der Median, das obere Quartil und das Maximum.
+Graphisch kann dies mithilfe eines Boxplots gezeigt werden. Ein Box-Whisker-Plot ist eine Zusammenfassung eines Datensatzes in fünf Punkten. Diese fünf Punkte sind das Minimum, das untere Quartil, der Median, das obere Quartil und das Maximum.\newline
+Das Minimum und Maximum (Whisker) sind beschränkt durch das 1.5 Fache des Quartilsabstandes. Alle darüber hinausliegenden Werte werden als Ausreißer bezeichnet und extra mit einem Kreis makiert.
 \begin{figure}[h] 
   \centering
      \includegraphics[width=0.9\textwidth]{Boxplot.png}
   \label{fig:Bild1}
 \end{figure}
-
 \section{Konzentrationsmaße}
-Konzentrationsmaße messen, wie ungleich bzw. wie geballt konzentriert Messwerte der Merkmalsträger verteilt sind. Mithilfe einer Lorenzkurve kann dies dargestellt werden. Für dich Achsen gilt:\newline
-v\index{k} = Anteil der k kleinsten MM-Träger an der MM-Summe\newline
-u\index{k} = Anteil der k kleinsten an der Gesamtzahl der MM-Träger
+Konzentrationsmaße messen, wie ungleich bzw. wie geballt konzentriert Messwerte der Merkmalsträger verteilt sind (relative Konzentrationsmaße). Mithilfe einer Lorenzkurve kann der Gini Koeffizient berechnet werden.
+\subsection{Lorenzkurve}
+Die Lorenzkurve ist eine graphische Darstellung der Verteilung.
+Zum zeichnen einer Lorenzkurve geht man wie folgt vor:
+\begin{enumerate}
+    \item In einer sortierten Liste berechnet man zunächächt den kumulierten \textbf{Anteil an der Grundmenge} und erhält dadurch die x-Koordinaten:
+    \begin{align*}
+    u_k&=\frac{j}{n}
+    \end{align*}
+    \item Für die y-Koordinaten wird der kumulierte Anteil an der Merkmalssumme berechnet, wobei die Merkmalssumme berechnet wird durch:
+    \begin{align*}
+    Q=\sum_{i=1}^n x_i
+    \end{align*}
+    Die eigentliche Koordinate ergbit dich dann durch die Berechnung:
+    \begin{align*}
+    v_j=\frac{\sum_{i=1}^j x_i}{Q}
+    \end{align*}
+\end{enumerate}
+
+\subsection{GiniKoeffizient-TODO}
+\section{Zweidimensionale Urliste}
+\subsection{Kontingenztabelle}
+Über Kontingenztabellen können zwei Merkmale X und Y, z. B. ein ordinal- mit einem nominalskalierten, in Beziehung gebracht werden, um die Zusammenhänge der Merkmalsausprägungen strukturiert als Häufigkeiten h (siehe Klassenbildung) darstellen zu können. Des weiteren können folgende Häufigkeiten in einer Kontingenztabelle dargestellt werden:
+\begin{itemize}
+    \item Gemeinsame Häufigekit: Die Elemente in der Tabelle, die darstellen welche Stichproben auf beide Bedingungen zutreffen
+    \item Absolute Randhäufigkeit: Summer alle absoluten Häufigkeiten in dieser Spalte/Zeile
+    \item Bedingte (relative) Häufigkeit: Summer alle relativen Häufigkeiten in dieser Spalte/Zeile
+\end{itemize}
+$\Rightarrow$ Hierdurch kann einfach ein allgemeines Bild von Ursache und Wirkung erstellt werden.
+\section{Streuungsdiagramm}
+Ein Streuungsdiagramm wird verwendet wenn in einer Stichprobe viele verschiedene Ausprägungen bze. Merkmale vorhanden sind. Es werden dabei alle Merkmale mit einem Punkt in ein kartesisches Koordinatensystem eingetragen, wodurch sich eine Punktwolke ergibt. Man erhofft sich durch das Muster der Punkte im Streudiagramm Informationen über die Abhängigkeitsstruktur der beiden Merkmale zu erkennen, die durch die Koordinaten repräsentiert sind.
+\newpage
+\section{Kontingenzkoeffizient}
+\section{Lineares Modell}
+Ein lineares Modell wird verwendet, um einen bestimmten Erwartungswert Y\footnote{Regressand bzw. abhängige Variable} durch eine bestimmten lineare mit X\footnote{Regressor bzw. unabhängige Variable} Weise zu berechnen, die von einer gewissen Bedingungskonstellationen abhängt. Allgemein gilt:
+\begin{eqnarray*}
+y = f(x)
+\end{eqnarray*}
+Für einfache lineare Schätzungen (auch lineare Regression genannt) gilt:
+\begin{eqnarray*}
+yi = a + bxi + \epsilon i
+\end{eqnarray*}
+$\epsilon$: Fehler der Grundgesamtheit \newline
+
+\subsection{Residuum}
+Abweichung zwischen gegebenen Daten der Stichprobe und durch Modell geschätzten Werten
+\begin{eqnarray*}Q(a,b)=\mathop{\sum ^{\infty }}\limits_{n=-\infty }{a}_{n}{(z-{z}_{0})}^{n},\end{eqnarray*}
+(\={x}; \={y}) ist Datenschwerpunkt und liegt \textbf{immer} auf der Regrassionsgeraden!
+\subsection{Fehlerquadratsumme}
+TODO
+\subsection{Varianz und Information}
+Die Varianz ist ein Maß für die Streuung der Wahrscheinlichkeitsdichte um ihren Schwerpunkt. Sie wird definiert als die mittlere quadratische Abweichung einer reellen Zufallsvariablen von ihrem Erwartungswert.
+\subsection{Determinationskoeffizient}
+Der Determinationskoeffizient ist ein Maß für die Abweichungen der Vorhersagen eines Regressionsmodells von den empirischen Daten, also ein Maß für die Modellanpassung. Konkret entspricht dies dem Anteil der Variation der Modellvorhersagen, der sogenannten erklärten Summe der Abweichungsquadrate, an der Variation der beobachteten Werte der abhängigen Variablen, der sogenannten Gesamtsumme der Abweichungsquadrate. Er wird interpretiert als der durch die Regression erklärter Anteil der Varianz.
+\newpage
+
 \section{Taschenrechner}
 \begin{enumerate}
     \item Häufigkeiten einschalten:
@@ -220,16 +284,9 @@ u\index{k} = Anteil der k kleinsten an der Gesamtzahl der MM-Träger
     \item OPTN + 2 (1-Variab-Bereich)
 \end{enumerate}
 Dabei kann folgendes abgelesen werden:
-\begin{table}[h]
-    \begin{tabular}{|c|c|}
-$\overline{x}$&Arithmetisches Mittel 
-\begin{eqnarray}\sigma x
-\end{eqnarray}&was weiß ich todo
+\begin{table}[]
+    \begin{tabular}{|r|l|}\hline
     \end{tabular}
 \end{table}
-\begin{itemize}
-    \item $\overline{x}$: Arithmetisches Mittel \newline
-    \item \begin{eqnarray} \sigma x\end{eqnarray}
-\end{itemize}
 \end{document}
 
