@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{upgreek}
+\usepackage{amssymb}
+\usepackage{amsfonts}
 \title{Statistik 2018}
 \author{Benjamin Altmiks}
 \date{2. Oktober 2018 - \today}
@@ -161,27 +163,28 @@ Zur Berechnung der Quantile ist mit folgendem Verfahren zu arbeiten:
 \end{align*}
 
 \end{enumerate}
-\subsection{Median}
-Ist X eine auf dem Wahrscheinlichkeitsraum $({\rm{\Omega }},{\mathfrak{A}},P)$ definierte reelle Zufallsvariable, so wird jede Zahl m mit der Eigenschaft 
-\begin{eqnarray*}P(X\le m)\ge \frac{1}{2}\quad \text{und}\quad P(X\ge m)\ge \frac{1}{2}\end{eqnarray*}
+\subsection{Lageparameter}
+\subsubsection{Modus}
+der Modus ist der häufigste Wert, der in der Stichprobe vorkommt. Es kann auch mehrere Modi geben, wenn zwei oder mehrere verschiedene Merkmale gleich oft am häufigsten vorkommen. Er ist Sinnvoll bei allen Skalenniveau
+\subsubsection{Median}
+Ist X eine auf dem Wahrscheinlichkeitsraum $({\rm{\Omega }},{\mathfrak{A}},P)$ definierte reelle Zufallsvariable, so wird jede Zahl m mit der Eigenschaft $P(X\le m)\ge \frac{1}{2}\quad \text{und}\quad P(X\ge m)\ge \frac{1}{2}$
 als Median der Verteilung von X bzw. als Median von X bezeichnet. Es ist der Mittlere Wert in einer sortierten Liste und wird in R durch median(x) berechnet.
-\subsection{Arithmetisches Mittel/Durchschnitt}
-Arithmetisches Mittel aus n Beobachtungen (x1, x2, …, xn) einer Zufallsgröße X, also \begin{eqnarray*}\overline{x}:=\frac{1}{n}\displaystyle \sum _{i=1}^{n}{x}_{i}.\end{eqnarray*}
+\subsubsection{Arithmetisches Mittel/Durchschnitt}
+Arithmetisches Mittel aus n Beobachtungen (x1, x2, …, xn) einer Zufallsgröße X, also 
+\begin{eqnarray*}\overline{x}:=\frac{1}{n}\displaystyle \sum _{i=1}^{n}{x}_{i}.\end{eqnarray*}
 In R-Studio berechenbar durch mean(x)
-\subsection{Weitere R-Kommandos}
-\begin{itemize}
-    \item cumsum() $\Rightarrow$ Kumulierte Summen:\newline 
-    Anzahl der Merkmalsträger die kleiner sind als eine bestimmte Schranke
-    \item 
-    \end{itemize}
 \newpage
-\section{Graphische Darstellungen}
-\begin{enumerate}
+\section{Streuungsparameter}
+\subsection{Graphische Darstellungen in R}
+In R können Daten wir folgt dargestellt werden:
+\begin{itemize}
     \item Durch R bestimmtes passende Graphische Darstellung: plot(Data\$SubData)
     \item Balkendiagramm:barplot(Daten)
     \item Säulendiagramm:barplot(Daten, horiz = T)
-    \item Kreisdiagramm:pie(Daten)
+    \item Kreissektorendiagramm:pie(Daten)
     \item Farben: plot(Daten ,col = c("blue"...))
+    \item Histogramm (für klassierte Daten): truehist(Daten)
+    \item Dichteplot: polygon(Daten,density, col)
     \item Gegenüberstellung:
     \begin{itemize}
         \item Zwei metrische Merkmale (Streuplot), 
@@ -189,12 +192,9 @@ In R-Studio berechenbar durch mean(x)
         \item Einem metrisches und einem nominales Merkmal (Boxplot)
         \item Mehrere metrische Merkmale (Streuplotmatrix)
     \end{itemize}
-\end{enumerate}
+\end{itemize}
 barplot(häufigkeitstabelle) = Balkendiagramm bzw Säulendiagramm --> horiz kann drehen
 pie(häufigkeitstabelle) = kreisdiagramm
-
-\subsection{Streuungsparameter}
-
 \begin{itemize}
     \item Spannweite:\begin{eqnarray*}R={x}_{max}-{x}_{min},\end{eqnarray*}
     \item Mittlere Quadratische Abweichung (Qualitätskriterium für Schätzer)
@@ -212,7 +212,7 @@ Graphisch kann dies mithilfe eines Boxplots gezeigt werden. Ein Box-Whisker-Plot
 Das Minimum und Maximum (Whisker) sind beschränkt durch das 1.5 Fache des Quartilsabstandes. Alle darüber hinausliegenden Werte werden als Ausreißer bezeichnet und extra mit einem Kreis makiert.
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.9\textwidth]{Boxplot.png}
+      \includegraphics[width=0.9\textwidth]{Boxplot.png}
   \label{fig:Bild1}
 \end{figure}
 \section{Konzentrationsmaße}
@@ -236,19 +236,32 @@ Zum zeichnen einer Lorenzkurve geht man wie folgt vor:
 \end{enumerate}
 
 \subsection{GiniKoeffizient-TODO}
+\section{Streuungsdiagramm}
+Ein Streuungsdiagramm wird verwendet wenn in einer Stichprobe viele verschiedene Ausprägungen bze. Merkmale vorhanden sind. Es werden dabei alle Merkmale mit einem Punkt in ein kartesisches Koordinatensystem eingetragen, wodurch sich eine Punktwolke ergibt. Man erhofft sich durch das Muster der Punkte im Streudiagramm Informationen über die Abhängigkeitsstruktur der beiden Merkmale zu erkennen, die durch die Koordinaten repräsentiert sind.
+TODO
+\newpage
 \section{Zweidimensionale Urliste}
 \subsection{Kontingenztabelle}
 Über Kontingenztabellen können zwei Merkmale X und Y, z. B. ein ordinal- mit einem nominalskalierten, in Beziehung gebracht werden, um die Zusammenhänge der Merkmalsausprägungen strukturiert als Häufigkeiten h (siehe Klassenbildung) darstellen zu können. Des weiteren können folgende Häufigkeiten in einer Kontingenztabelle dargestellt werden:
+\begin{figure}[h] 
+  \centering
+    \includegraphics[width=0.9\textwidth]{Kontingenztabelle.PNG}
+  \label{fig:Bild1}
+\end{figure}
 \begin{itemize}
     \item Gemeinsame Häufigekit: Die Elemente in der Tabelle, die darstellen welche Stichproben auf beide Bedingungen zutreffen
     \item Absolute Randhäufigkeit: Summer alle absoluten Häufigkeiten in dieser Spalte/Zeile
     \item Bedingte (relative) Häufigkeit: Summer alle relativen Häufigkeiten in dieser Spalte/Zeile
 \end{itemize}
 $\Rightarrow$ Hierdurch kann einfach ein allgemeines Bild von Ursache und Wirkung erstellt werden.
-\section{Streuungsdiagramm}
-Ein Streuungsdiagramm wird verwendet wenn in einer Stichprobe viele verschiedene Ausprägungen bze. Merkmale vorhanden sind. Es werden dabei alle Merkmale mit einem Punkt in ein kartesisches Koordinatensystem eingetragen, wodurch sich eine Punktwolke ergibt. Man erhofft sich durch das Muster der Punkte im Streudiagramm Informationen über die Abhängigkeitsstruktur der beiden Merkmale zu erkennen, die durch die Koordinaten repräsentiert sind.
+\subsection{Korrelationskoeffizient}
+Der Korrelationskoeffizient ist ein Maß für die Abhängigkeit (Assoziation) zwischen Zufallsgrößen. Man nennt X und Y positiv bzw. negativ korreliert, falls ϱxy > 0 bzw. ϱxy < 0 gilt. Ist ϱxy = 0, d. h. cov(X, Y) = 0, so heißen X und Y unkorreliert. Aus der stochastischen Unabhängigkeit zweier Zufallsgrößen folgt ihre Unkorreliertheit.
+\begin{eqnarray}{\varrho }_{xy}=\frac{cov(X,Y)}{{\sigma }_{x}{\sigma }_{y}}\end{eqnarray} wobei gilt:
+\begin{eqnarray}-1\le {\varrho }_{xy}\le +1\end{eqnarray}
+\subsection{Multipler Korrelationskoeffizient}
+Als multiplen Korrelationskoeffizienten ϱ1(2···m) zwischen X1 und (X2, …, Xm) bezeichnet man den einfachen Korrelationskoeffizienten zwischen X1 und gX1 (X(2)), X(2) = (X2, …, Xm) d. h., es ist ein Maß für die lineare Abhängigkeit zwischen X1 und der Gesamtheit der X2, …, Xm
+\begin{eqnarray}{\varrho }_{1(\mathrm{2\cdots}m)}=\frac{{cov}({X}_{1},{g}_{{X}_{1}}({X}^{(2)})}{\sqrt{Var({X}_{1})Var({g}_{{X}_{1}}({X}^{(2)}))}}.\end{eqnarray}
 \newpage
-\section{Kontingenzkoeffizient}
 \section{Lineares Modell}
 Ein lineares Modell wird verwendet, um einen bestimmten Erwartungswert Y\footnote{Regressand bzw. abhängige Variable} durch eine bestimmten lineare mit X\footnote{Regressor bzw. unabhängige Variable} Weise zu berechnen, die von einer gewissen Bedingungskonstellationen abhängt. Allgemein gilt:
 \begin{eqnarray*}
@@ -271,7 +284,131 @@ Die Varianz ist ein Maß für die Streuung der Wahrscheinlichkeitsdichte um ihre
 \subsection{Determinationskoeffizient}
 Der Determinationskoeffizient ist ein Maß für die Abweichungen der Vorhersagen eines Regressionsmodells von den empirischen Daten, also ein Maß für die Modellanpassung. Konkret entspricht dies dem Anteil der Variation der Modellvorhersagen, der sogenannten erklärten Summe der Abweichungsquadrate, an der Variation der beobachteten Werte der abhängigen Variablen, der sogenannten Gesamtsumme der Abweichungsquadrate. Er wird interpretiert als der durch die Regression erklärter Anteil der Varianz.
 \newpage
+\section{Kombinatorik}
+Die Kombinatorik ist ein Teilgebiet der Mathematik, in dem man die Eigenschaften und die Struktur der Abbildungen (oder Morphismen) einer endlichen Menge in eine Menge von Objekten, welche gewisse Bedingungen erfüllen, studiert. Die Kombinatorik beschäftigt sich vor allem mit dem Zählen und Ordnen der Morphismen.
+\subsection{Permutation}
+Die Permutation ist die "Anordnung von n Objekten". Für n unterschiedliche Objekte kann man n! verschiedene Anordnungen vornehmen.\newline
+Für n Objekte in k Gruppen mit jeweils
+$n_k (n_1,n_2,n_3...,n_k)$ 
+nicht unterscheidbaren Elementen können in
+\begin{eqnarray*}
+\frac{n!}{n_1!*n_2!*...*n_k!}
+\end{eqnarray*}
+verschiedenen Varianten angeordnet werden.
+\subsection{Auswahl von k-Objekten aus n-Elementen}
+\begin{tabular}{|l|c|c|} \hline
+ & mit Wiederholung & ohne Wiederholung \\\hline
+mit Reihenfolge & n$^{k}$ & $\frac{n!}{(n-k)!}$ \\\hline
+ohne Reihenfolge & $\binom{n+k-1}{k}$ & $\binom{n}{k}$  \\\hline
+\end{tabular}\\
+Hilfe für Berechnung mit Taschenrechner siehe Kapitel Taschenrechner
 
+\section{Zufall und Wahrscheinlichkeit}
+\begin{itemize}
+    \item Zufallsvorgang: Geschechen mit ungewissem Ausgang (z.B Münzwurf)
+    \item Elementarereignis $\omega$: Ein möglicher Ausgang (Kopf). Elementarereignis schließt sich gegenseitig aus.
+    \item Ergebnismenge $\Omega$: Menge aller $\omega$
+    \item Ereignis A: Folgeerscheinung eines Elemantarereignisses. 
+    Ereignisse schließen sich nicht gegenseitig aus
+    \item Wahrscheinlicheit P(A): Chancen für das Eintreten von A
+    \item Laplace-Wahrscheinlichkeit:
+    \begin{align*}
+    P(A) = \frac{A}{\Omega} = 
+    \frac{Anzahl der für A günstigen Fälle}{Anzahl aller möglichen Fälle}
+    \end{align*}
+\end{itemize}
+
+
+
+////LÜCKE////
+
+
+
+\section[Zufallsvariablen und Verteilungen]{Zufallsvariablen und Verteilungen\footnote{Skript Seite 144}}
+\subsection{Zufallsvariablen}
+Eine Funktion X, die jedem Ergebnis $\omega$ des Ergebnisraum $\Omega$ genau eine Zahl x der Menge der reellen Zahlen $\mathbb{R}$
+zuordnet (disjunkt), heißt Zufallsvariable, bzw:
+\begin{eqnarray*}
+X: \Omega \rightarrow \mathbb{R}
+\end{eqnarray*}
+Notationen am Beispiel des 2-fachen Würfelwurfs mit y als Augensumme:
+\begin{itemize}
+    \item $\Omega$ = {(1,1); (1,2); ...; (6,6)} = Menge aller Elemente
+    \item $y(\Omega)$ = {2, 3, 4, ..., 12} = Endlicher Wertebereich
+    \item P(Y$\leq$4) = $\frac{6}{36}$ = P(Y<5)
+    \item P(3$\leq$X$\geq$5) = 
+\end{itemize}
+\subsection{Diskrete Zufallsvariablen}
+Eine Zufallsvariable X heißt diskret, wenn die Ergenbismenge endlich ist. Diskrete Zufallsvariablen entstehen meist durch einen Zählvorgang.\\
+Eine Wahrscheinlichkeitsverteilung/verteilungsfunktion gibt an, wie sich die Wahrscheinlichkeiten auf die möglichen Werte einer Zufallsvariablen verteilen.
+\begin{figure}[h] 
+  \centering
+    \includegraphics[width=0.9\textwidth]{Verteilungsfunktion.png}
+  \label{fig:Bild1}
+\end{figure}
+
+\subsubsection{Binomialverteilung B(n, p)}
+Die Binomialverteilung ist eine von den Parametern n $\in$ $\mathbb{N}$ und p $\in [0,1]$ abhängende diskrete Wahrscheinlichkeitsverteilung.Dabei ist n = Anzahl der Durchführungen (jeweils unabhängig) und p = P(A) = Wahrscheinlichkeit für A.
+\subsubsection[Hypergeometrische Verteilung Hyp(N, M, n)]{Hypergeometrische Verteilung Hyp(N, M, n)\footnote{Skript Seite 153}}
+Die Hypergeometrische Verteilung ist eine Wahrscheinlichkeitsverteilung für ein n-faches Ziehen. Im Gegensatz zur Binomialwahrscheinlichkeit wird ein ziehen \textbf{ohne} Zurücklegen aus N Objekten durchgeführt, wobei M markiert sind.
+\begin{quote}
+X = Anzah gezogener Objekte mit Markierung
+\end{quote}
+$\Rightarrow$ Hypergeometrisch Verteilt mit Parametern N, M, n bzw. $X \sim Hyp(N;M;n)$\\
+Allgemein gilt:
+\begin{eqnarray*}
+{h}_{N,M,n}:\{0,\ldots, n\}\ni m\to \frac{\left(\begin{array}{c}M\\ n\end{array}\right)\left(\begin{array}{c}N-M\\ n-m\end{array}\right)}{\left(\begin{array}{c}N\\ n\end{array}\right)}\in [0,1]
+\end{eqnarray*}
+Wie zu erkennen wird angegeben wie viele Treffer und wie viele Nichttreffer es geben soll. Dies wird durch die Gesamtanzahl des Biomialkoeffizienten geteilt. In R:
+\begin{itemize}
+    \item dhyper(x = 2, m = 6, n = 43,  k = 6, lower.tail = FALSE) = 0.132378\\
+    $\Rightarrow$ Genau 2 (von 6) aus (insgesamt) N = 49 (n = N-m)
+    \item phyper(q = 2, m = 6, n = 43,  k = 6, lower.tail = FALSE) = 0.9813625\\
+    $\Rightarrow$ Höchstens 2 (von 6) aus (insgesamt) 49
+\end{itemize}
+\subsubsection[Poissonverteilung]{Poissonverteilung P($\lambda$)\footnote{Skript Seite 156}}
+Die Poissonverteilung\footnote{Eine Herleitung zum Verständnis ist nicht gegeben/gefordert } ist eine Wahrscheinlichkeitsverteilung, mit der die Anzahl von Ereignissen modelliert werden kann, die bei konstanter mittlerer Rate unabhängig voneinander in einem festen Zeitintervall eintreten.
+\begin{quote}
+    X = 'Anzahl der <Ereignisse> pro <Zeitintervall>' mit $X \sim P(\lambda)$
+\end{quote}
+Für die Zufallsgröße X (poissonverteilt mit Parameter $\lambda$)gilt:
+\begin{align*}
+\mathbb{P}(X=k)&=\frac{\lambda^k}{k!}e^{-\lambda}
+\end{align*}
+Ein Berechnung kann des weiteren über die Tabelle der Poissonverteilung bestimmt werden.
+In R:
+\begin{itemize}
+    \item dpois(x = 2, lambda = 0.0998) = 0.00450701
+\end{itemize}
+\subsection[Stetige Zufallsvariablen]{Stetige Zufallsvariablen \footnote{Skript Seite}}
+Für die spezielle stetige Zufallsvariblen:
+\subsubsection{Stetige Gleichverteilung}
+Eine Zufallsvariable X wird als stetig bezeichnet, wenn sie überabzählbar unendlich viele Werte annimmt. Eine Wahrscheinlichkeitsverteilung gibt an, wie sich die Wahrscheinlichkeiten auf die möglichen Werte einer Zufallsvariablen verteilen.
+\subsubsection{Dichtefunktion}
+Die Dichtefunktion ist ein Hilfsmittel zur Beschreibung einer stetigen Wahrscheinlichkeitsverteilung. Dabei ist der Flächeninhalt zwischen der Dichtefunktion und der X-Achse gleich die Wahrscheinlichkeit der stetigen Zufallsvariable X.
+Es gilt:
+\begin{equation*}
+F(x) = P(X \le x) = \int_{-\infty}^{x} \! f(u) \, \mathrm{d}u    
+\end{equation*}
+Dabei muss gelten:
+\begin{itemize}
+    \item $f(x) \geq 0$ $\Rightarrow$ Dichtefunktion kann nur positive Werte annehmen 
+    \item $\int_{-\infty}^{\infty} \! f(x) \, \mathrm{d}x = 1$ $\Rightarrow$ Die Fläche unter der Dichtefunktion hat den Inhalt 1
+\end{itemize}
+
+\subsubsection{Verteilungsfunktion}
+Eine Funktion F, die jedem x einer Zufallsvariablen X genau eine Wahrscheinlichkeit $P(X \le x)$ zuordnet, heißt \textbf{Verteilungsfunktion}.\\
+Es gilt Allgemein: $F: x \rightarrow P(X \le x)$
+
+\subsubsection{Gleichverteilung}
+Wie bei der diskreten Gleichverteilung ist auch bei der stetigen Gleichverteilung jedes Ergebnis gleich wahrscheinlich. Der Unterschied ist, dass wir diesmal alle Werte aus einem Intervall [a,b] betrachten (statt einzelner Werte bei der diskreten Gleichverteilung). Manchmal spricht man auch von der Rechteckverteilung. Es gilt also:
+%http://massmatics.de/merkzettel/#!863:Stetige_Gleichverteilung/
+
+
+
+
+
+\newpage
 \section{Taschenrechner}
 \begin{enumerate}
     \item Häufigkeiten einschalten:
@@ -288,5 +425,12 @@ Dabei kann folgendes abgelesen werden:
     \begin{tabular}{|r|l|}\hline
     \end{tabular}
 \end{table}
+\subsection{zu 9.2}
+\begin{tabular}{|l|c|c|} \hline
+ & mit Wiederholung & ohne Wiederholung \\\hline
+mit Reihenfolge & n$^{k}$ & Zahl+Shift+nPr(*)+Zahl \\\hline
+ohne Reihenfolge & (Formel)+Shift+nCr(/)+Zahl &  Zahl+Shift+nCr(/)+Zahl \\\hline
+\end{tabular}
+
 \end{document}
 
