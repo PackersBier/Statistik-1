@@ -8,6 +8,8 @@
 \usepackage{upgreek}
 \usepackage{amssymb}
 \usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lmodern}
 \title{Statistik 2018}
 \author{Benjamin Altmiks}
 \date{2. Oktober 2018 - \today}
@@ -152,7 +154,7 @@ Sei X eine Zufallsgröße mit der Verteilungsfunktion F und sei (x1, x2, …, xn
 In R-Studio berechenbar durch ecdf(x)
 \subsection{(Empirische) Quantile}
 Unter dem (unteren) empirischen p-Quantil Qp, (0 < p < 1) versteht man die Größe, die die geordnete Stichprobe so zerlegt, daß p * 100\% der n Daten kleiner als Qp sind. Sie ist exakt wie folgt definiert:
-\begin{eqnarray*}K(x):=\left\{\begin{array}{ll}\displaystyle \sum _{i=-\infty }^{\infty }{(-1)}^{i}{e}^{-2{i}^{2}{x}^{2}} & {\text{f}\rm{\ddot{u}}\text{r}}\,x\gt 0\\ 0 & {\text{f}\rm{\ddot{u}}\text{r}}\,x\le 0\end{array}\right.\end{eqnarray*}
+\begin{eqnarray*}K(x):=\left\{\begin{array}{ll}\displaystyle \sum _{i=-\infty }^{\infty }{(-1)}^{i}{e}^{-2{i}^{2}{x}^{2}} & {\text{f}\rmfamily{\ddot{u}}\text{r}}\,x\gt 0\\ 0 & {\text{f}\rmfamily{\ddot{u}}\text{r}}\,x\le 0\end{array}\right.\end{eqnarray*}
 In R-Studio berechenbar durch quantile(x)
 Zur Berechnung der Quantile ist mit folgendem Verfahren zu arbeiten:
 \begin{enumerate}
@@ -255,11 +257,11 @@ TODO
 \end{itemize}
 $\Rightarrow$ Hierdurch kann einfach ein allgemeines Bild von Ursache und Wirkung erstellt werden.
 \subsection{Korrelationskoeffizient}
-Der Korrelationskoeffizient ist ein Maß für die Abhängigkeit (Assoziation) zwischen Zufallsgrößen. Man nennt X und Y positiv bzw. negativ korreliert, falls ϱxy > 0 bzw. ϱxy < 0 gilt. Ist ϱxy = 0, d. h. cov(X, Y) = 0, so heißen X und Y unkorreliert. Aus der stochastischen Unabhängigkeit zweier Zufallsgrößen folgt ihre Unkorreliertheit.
+Der Korrelationskoeffizient ist ein Maß für die Abhängigkeit (Assoziation) zwischen Zufallsgrößen. Man nennt X und Y positiv bzw. negativ korreliert, falls $\varrho$xy > 0 bzw. $\varrho$xy < 0 gilt. Ist $\varrho$xy = 0, d. h. cov(X, Y) = 0, so heißen X und Y unkorreliert. Aus der stochastischen Unabhängigkeit zweier Zufallsgrößen folgt ihre Unkorreliertheit.
 \begin{eqnarray}{\varrho }_{xy}=\frac{cov(X,Y)}{{\sigma }_{x}{\sigma }_{y}}\end{eqnarray} wobei gilt:
-\begin{eqnarray}-1\le {\varrho }_{xy}\le +1\end{eqnarray}
+\begin{eqnarray}-1\le {\varrho}_{xy}\le +1\end{eqnarray}
 \subsection{Multipler Korrelationskoeffizient}
-Als multiplen Korrelationskoeffizienten ϱ1(2···m) zwischen X1 und (X2, …, Xm) bezeichnet man den einfachen Korrelationskoeffizienten zwischen X1 und gX1 (X(2)), X(2) = (X2, …, Xm) d. h., es ist ein Maß für die lineare Abhängigkeit zwischen X1 und der Gesamtheit der X2, …, Xm
+Als multiplen Korrelationskoeffizienten $\varrho$1(2···m) zwischen X1 und (X2, …, Xm) bezeichnet man den einfachen Korrelationskoeffizienten zwischen X1 und gX1 (X(2)), X(2) = (X2, …, Xm) d. h., es ist ein Maß für die lineare Abhängigkeit zwischen X1 und der Gesamtheit der X2, …, Xm
 \begin{eqnarray}{\varrho }_{1(\mathrm{2\cdots}m)}=\frac{{cov}({X}_{1},{g}_{{X}_{1}}({X}^{(2)})}{\sqrt{Var({X}_{1})Var({g}_{{X}_{1}}({X}^{(2)}))}}.\end{eqnarray}
 \newpage
 \section{Lineares Modell}
@@ -271,8 +273,7 @@ Für einfache lineare Schätzungen (auch lineare Regression genannt) gilt:
 \begin{eqnarray*}
 yi = a + bxi + \epsilon i
 \end{eqnarray*}
-$\epsilon$: Fehler der Grundgesamtheit \newline
-
+$\epsilon$: Fehler der Grundgesamtheit
 \subsection{Residuum}
 Abweichung zwischen gegebenen Daten der Stichprobe und durch Modell geschätzten Werten
 \begin{eqnarray*}Q(a,b)=\mathop{\sum ^{\infty }}\limits_{n=-\infty }{a}_{n}{(z-{z}_{0})}^{n},\end{eqnarray*}
@@ -302,28 +303,37 @@ mit Reihenfolge & n$^{k}$ & $\frac{n!}{(n-k)!}$ \\\hline
 ohne Reihenfolge & $\binom{n+k-1}{k}$ & $\binom{n}{k}$  \\\hline
 \end{tabular}\\
 Hilfe für Berechnung mit Taschenrechner siehe Kapitel Taschenrechner
-
 \section{Zufall und Wahrscheinlichkeit}
 \begin{itemize}
     \item Zufallsvorgang: Geschechen mit ungewissem Ausgang (z.B Münzwurf)
     \item Elementarereignis $\omega$: Ein möglicher Ausgang (Kopf). Elementarereignis schließt sich gegenseitig aus.
     \item Ergebnismenge $\Omega$: Menge aller $\omega$
-    \item Ereignis A: Folgeerscheinung eines Elemantarereignisses. 
-    Ereignisse schließen sich nicht gegenseitig aus
+    \item Ereignis A: Folgeerscheinung eines Elemantarereignisses. Ereignisse schließen sich nicht gegenseitig aus
     \item Wahrscheinlicheit P(A): Chancen für das Eintreten von A
     \item Laplace-Wahrscheinlichkeit:
     \begin{align*}
     P(A) = \frac{A}{\Omega} = 
-    \frac{Anzahl der für A günstigen Fälle}{Anzahl aller möglichen Fälle}
+    \frac{\text{Anzahl der für A günstigen Fälle}}{\text{Anzahl aller möglichen Fälle}}
     \end{align*}
 \end{itemize}
-
-
-
-////LÜCKE////
-
-
-
+\subsection{Laplace Wahrscheinlichkeit und das Urnenmodell}
+In einem Urnenmodell werden n Objekte aus einer Menge mit N Objekten gezogen. Dabei gilt:
+\begin{itemize}
+    \item Ziehen mit Zurücklegen : $N^n$
+    \item Ziehen ohne Zurücklegen : $\frac{N!}{N-n}$
+\end{itemize}
+Dabei gelten folgende Rechenregeln:
+\begin{enumerate}
+    \item P(A) a$\leq$b
+    \item A $\subseteq$ B $\Rightarrow$ P(A)$\leq$P(B)
+    \item P(A$\cup$B) = P(A) + P(B) - P(A$\cap$B)
+\end{enumerate}
+\subsection{Bedingte Wahrscheinlichkeit}
+Eine Bedingte Wahrscheinlichkeit beschreibt ein Ereignis, das sich verändert, wenn bereits ein anderes Ereigniss eingetreten ist. Dabei ist $P_B(A)$ bzw P(A|B) die Wahrscheinlichleit von A unter der Bedingung, dass B eingetreten ist. Es gilt:
+\begin{eqnarray}
+P_B(A) = \frac{P(A \cap B)}{P(B)}
+\end{eqnarray}
+Also, das die Wahrscheinlichkeit von A unter der Bedingung B [$P_B(A)$] gleich dem Quotienten der Wahrscheinlichkeit von A und B [P(A$\cup$B)] und der Wahrscheinlichkeit von B ist. [P(B)]
 \section[Zufallsvariablen und Verteilungen]{Zufallsvariablen und Verteilungen\footnote{Skript Seite 144}}
 \subsection{Zufallsvariablen}
 Eine Funktion X, die jedem Ergebnis $\omega$ des Ergebnisraum $\Omega$ genau eine Zahl x der Menge der reellen Zahlen $\mathbb{R}$
@@ -348,7 +358,10 @@ Eine Wahrscheinlichkeitsverteilung/verteilungsfunktion gibt an, wie sich die Wah
 \end{figure}
 
 \subsubsection{Binomialverteilung B(n, p)}
-Die Binomialverteilung ist eine von den Parametern n $\in$ $\mathbb{N}$ und p $\in [0,1]$ abhängende diskrete Wahrscheinlichkeitsverteilung.Dabei ist n = Anzahl der Durchführungen (jeweils unabhängig) und p = P(A) = Wahrscheinlichkeit für A.
+Die Binomialverteilung ist eine von den Parametern n $\in$ $\mathbb{N}$ und p $\in [0,1]$ abhängende diskrete Wahrscheinlichkeitsverteilung. Dabei ist n = Anzahl der Durchführungen (jeweils unabhängig) und p = P(A) = Wahrscheinlichkeit für A. Es gilt:
+\begin{eqnarray*}
+\binom{n}{k} * p^k * (1-p)^{n-k}
+\end{eqnarray*}
 \subsubsection[Hypergeometrische Verteilung Hyp(N, M, n)]{Hypergeometrische Verteilung Hyp(N, M, n)\footnote{Skript Seite 153}}
 Die Hypergeometrische Verteilung ist eine Wahrscheinlichkeitsverteilung für ein n-faches Ziehen. Im Gegensatz zur Binomialwahrscheinlichkeit wird ein ziehen \textbf{ohne} Zurücklegen aus N Objekten durchgeführt, wobei M markiert sind.
 \begin{quote}
@@ -376,14 +389,13 @@ Für die Zufallsgröße X (poissonverteilt mit Parameter $\lambda$)gilt:
 \mathbb{P}(X=k)&=\frac{\lambda^k}{k!}e^{-\lambda}
 \end{align*}
 Ein Berechnung kann des weiteren über die Tabelle der Poissonverteilung bestimmt werden.
-In R:
-\begin{itemize}
-    \item dpois(x = 2, lambda = 0.0998) = 0.00450701
-\end{itemize}
+In R:\\
+$\Rightarrow$ dpois(x = 2, lambda = 0.0998) = 0.00450701
 \subsection[Stetige Zufallsvariablen]{Stetige Zufallsvariablen \footnote{Skript Seite}}
-Für die spezielle stetige Zufallsvariblen:
+
 \subsubsection{Stetige Gleichverteilung}
-Eine Zufallsvariable X wird als stetig bezeichnet, wenn sie überabzählbar unendlich viele Werte annimmt. Eine Wahrscheinlichkeitsverteilung gibt an, wie sich die Wahrscheinlichkeiten auf die möglichen Werte einer Zufallsvariablen verteilen.
+Eine Zufallsvariable X wird als stetig bezeichnet, wenn sie überabzählbar unendlich viele Werte annimmt.
+Eine Wahrscheinlichkeitsverteilung gibt an, wie sich die Wahrscheinlichkeiten auf die möglichen Werte einer Zufallsvariablen verteilen.
 \subsubsection{Dichtefunktion}
 Die Dichtefunktion ist ein Hilfsmittel zur Beschreibung einer stetigen Wahrscheinlichkeitsverteilung. Dabei ist der Flächeninhalt zwischen der Dichtefunktion und der X-Achse gleich die Wahrscheinlichkeit der stetigen Zufallsvariable X.
 Es gilt:
@@ -395,20 +407,92 @@ Dabei muss gelten:
     \item $f(x) \geq 0$ $\Rightarrow$ Dichtefunktion kann nur positive Werte annehmen 
     \item $\int_{-\infty}^{\infty} \! f(x) \, \mathrm{d}x = 1$ $\Rightarrow$ Die Fläche unter der Dichtefunktion hat den Inhalt 1
 \end{itemize}
-
+In R:
+\begin{itemize}
+    \item dunif(Vektor, min = a, max = b) $\Rightarrow$ Verteilungsfunktionn
+    \item punif(Vektor, min = a, max = b) $\Rightarrow$ Quantilsfunktion
+\end{itemize}
 \subsubsection{Verteilungsfunktion}
 Eine Funktion F, die jedem x einer Zufallsvariablen X genau eine Wahrscheinlichkeit $P(X \le x)$ zuordnet, heißt \textbf{Verteilungsfunktion}.\\
 Es gilt Allgemein: $F: x \rightarrow P(X \le x)$
 
 \subsubsection{Gleichverteilung}
 Wie bei der diskreten Gleichverteilung ist auch bei der stetigen Gleichverteilung jedes Ergebnis gleich wahrscheinlich. Der Unterschied ist, dass wir diesmal alle Werte aus einem Intervall [a,b] betrachten (statt einzelner Werte bei der diskreten Gleichverteilung). Manchmal spricht man auch von der Rechteckverteilung. Es gilt also:
-%http://massmatics.de/merkzettel/#!863:Stetige_Gleichverteilung/
+\begin{eqnarray*}
+f:{\mathbb{R}}\ni x\to \left\{\begin{array}{rl}\frac{1}{b-a}, & a\lt x\lt b\\ 0, & x\notin(a,b)\end{array}\in {\mathbb{R}}.\right.
+\end{eqnarray*}
 
-
-
-
-
+\begin{figure}[h] 
+  \centering
+      \includegraphics[width=0.9\textwidth]{Verteilungsfunktion.png}
+  \label{fig:Bild1}
+\end{figure}
 \newpage
+\subsubsection{Normalverteilung}
+Der Parameter $\mu\in\mathbb{R}$ steht dabei für den Erwartungswert/Lageparameter und $\sigma^2>0$ für die Varianz (bzw. $\sigma$ für die Standardabweichung/Streuungsparameter) der Verteilung. Die Funktion/Glockenkurve ist dabei immer Symmetrisch um den Lagerparameter. (Symmetrisch zu $\mu$)
+\begin{align*}
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{align*}
+\textbf{Standartnormalverteilung:}
+Für N(0,1) und F(x) = $\Phi$(x) $\Rightarrow$ Tabelle ablesbar\\
+Allgemein gilt:
+\begin{eqnarray}
+1. F(x) = \Sigma(\frac{x-\mu}{\omega})
+2. \Phi(-x) = 1-\Phi(x)
+3. F(x) = 0.5 \Rightarrow x = \mu
+4. F(x_1) = 1 - F(x_2) \Rightarrow \mu = \frac{x_1+x_2}{2}
+\end{eqnarray}
+In R gilt:
+\begin{itemize}
+    \item dnorm(x (Vektor Quantile), mean = 0 (Mittel), sd= 0 (Standartabweichung))
+    $\Rightarrow$ Dichtefunktion
+    \item pnorm(q (Vektor Quantile), mean = 0 (Mittel), sd= 0 (Standartabweichung)), 
+    $\Rightarrow$ Verteilungsfunktion
+    \item qnorm (Vektor Wahrscheinlichkeit, mean = 0 (Mittel), sd= 0 (Standartabweichung))
+    $\Rightarrow$ Quantilfunktion
+\end{itemize}
+Für die Lineare Transformation gilt:
+\begin{eqnarray}
+\tilde{Y} = \frac{Y - \mu}{\sigma}
+\end{eqnarray}
+\subsubsection{Lagerprameter}
+\begin{itemize}
+    \item Modus: Häufigster Wert (Nicht allgemein Definiert)\\
+    $\Rightarrow$ Normalverteilung: $x_mod = \mu$
+    \item Median: Mittlerer Wert
+    $\Rightarrow$ Normalverteilung: $x_mod = \mu$ 
+    \item $\beta$-Fraktil bzw. $\beta$-Quantil: Flächeninhalt der (stetigen) Dichtefunktion
+    $\Rightarrow$ Interpolation Berechnung: $\x_\beta \approx (x_b - x_a)*\frac{\beta - a}{b-a} X$
+    \item Erwartungswert E(x) bzw $\mu$: Unterscheidung zwischen diskret und stetig:\\
+    $\Rightarrow$ Diskret: E(x) = $\sum_{i=1}^{} x_i * f(x_i)$\\
+    $\Rightarrow$ Stetig-Exponentialverteilt E(X): $\int _{-\infty }^{+\infty }x$ * f(x) dx
+\end{itemize}
+\subsubsection{Rechenregeln für den Erwartungswert}
+\begin{itemize}
+    \item Symmetrie von f bezüglich a: E(X) = a
+    \item Lineare Transformation: E(a+bX) = a + b * E(X)
+    \item Summenbildung: E($\sum_{i=1}^n X_i$) = $\sum_{i=1}^n E(X_i)$
+    \item Unabhängigkeit: X, Y unabhängig $\Rightarrow$ E(X*Y) = E(X) * E(Y)
+\end{itemize}
+\subsubsection{Streungsparameter}
+\begin{itemize}
+    \item Varianz Var(X) bzw $\sigma^2$:
+    $\Rightarrow$ 
+    \item Standartabweichung $\sigma$: Sta(X) = \sqrt{Var(X)}
+\end{itemize}
+
+\subsubsection{Rechenregeln für die Varianz}
+\begin{itemize}
+    \item $Var(X) = E(X^2)- [E(X)]^2$
+    $\Rightarrow$ 
+\end{itemize}
+
+% Ende 27.11 Seite 176
+% Aufgaben bis 84
+
+
+
+
 \section{Taschenrechner}
 \begin{enumerate}
     \item Häufigkeiten einschalten:
@@ -431,6 +515,4 @@ Dabei kann folgendes abgelesen werden:
 mit Reihenfolge & n$^{k}$ & Zahl+Shift+nPr(*)+Zahl \\\hline
 ohne Reihenfolge & (Formel)+Shift+nCr(/)+Zahl &  Zahl+Shift+nCr(/)+Zahl \\\hline
 \end{tabular}
-
 \end{document}
-
